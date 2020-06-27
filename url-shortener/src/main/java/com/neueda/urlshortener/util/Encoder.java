@@ -3,7 +3,7 @@ package com.neueda.urlshortener.util;
 public class Encoder {
 	
 	public String encode(String longUrl, int id) {
-		return  "" + convertDecimalToBase62(id * 100000000);		// multiply by 100000000 to avoid single or two-digit URLs
+		return  "" + convertDecimalToBase62(id * 3844);		// multiply by 3844 to make the URL three digits or longer
 	}
 	
 	public String convertDecimalToBase62(int n){
