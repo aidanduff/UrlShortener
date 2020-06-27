@@ -24,7 +24,7 @@ public class UrlController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/short")
 	public ResponseEntity<Url> addAndEncode(@RequestBody String longUrl) {
-		Url urlToAdd = new Url(longUrl, "");
+		Url urlToAdd = new Url(longUrl, "");								
 		urlService.addUrl(urlToAdd);										//Add the long URL to the database
 		int uniqueId = urlService.getUrl(longUrl).getId();					//Get the auto-generated ID for the database entry
 		urlToAdd.setShortUrl(new Encoder().encode(longUrl, uniqueId));		//Use the ID as a seed to encode the long URL into a short URL
@@ -36,6 +36,8 @@ public class UrlController {
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString) throws IOException {
 		httpServletResponse.sendRedirect(urlService.getLong(shortString).getLongUrl());
 	}
+	
+	//Add comment for docker push
 
 
 }
