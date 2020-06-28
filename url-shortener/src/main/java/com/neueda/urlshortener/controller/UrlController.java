@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neueda.urlshortener.entity.Url;
+import com.neueda.urlshortener.model.Url;
 import com.neueda.urlshortener.service.UrlService;
 import com.neueda.urlshortener.util.Encoder;
 

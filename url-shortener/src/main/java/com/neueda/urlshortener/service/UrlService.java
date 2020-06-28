@@ -3,8 +3,8 @@ package com.neueda.urlshortener.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.neueda.urlshortener.dao.UrlRepository;
-import com.neueda.urlshortener.entity.Url;
+import com.neueda.urlshortener.model.Url;
+import com.neueda.urlshortener.repository.UrlRepository;
 
 @Service
 public class UrlService {

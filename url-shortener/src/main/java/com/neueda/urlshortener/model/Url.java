@@ -1,11 +1,13 @@
-package com.neueda.urlshortener.entity;
+package com.neueda.urlshortener.model;
 
 import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "urls")
 @Entity
 public class Url {
 		@Id

@@ -1,8 +1,8 @@
-package com.neueda.urlshortener.dao;
+package com.neueda.urlshortener.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.neueda.urlshortener.entity.Url;
+import com.neueda.urlshortener.model.Url;
 
 public interface UrlRepository extends CrudRepository<Url, String> {
 	
