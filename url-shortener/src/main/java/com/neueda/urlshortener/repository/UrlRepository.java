@@ -6,7 +6,7 @@ import com.neueda.urlshortener.model.Url;
 
 public interface UrlRepository extends CrudRepository<Url, String> {
 	
-	Url findTopByLongUrl(String longUrl);	//Use findTop to avoid SQL Exception thrown by duplicate DB entries
+	Url findTopByOriginalUrl(String originalUrl);	//Use findTop to avoid SQL Exception thrown by duplicate DB entries
 	
 	Url findTopByShortUrl(String shortUrl);
 

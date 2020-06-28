@@ -12,14 +12,14 @@ public class Url {
 		@Id
 		@GeneratedValue
 		private int id;
-		@Column(name="long_url",columnDefinition="VARCHAR(3200)")
-		private String longUrl;
+		@Column(name="original_url",columnDefinition="VARCHAR(3200)")
+		private String originalUrl;
 		private String shortUrl;
 		private Instant creationTime;
 		
 		public Url(String longUrl, String shortUrl) {
 			super();
-			this.longUrl = longUrl;
+			this.originalUrl = longUrl;
 			this.shortUrl = shortUrl;
 			this.creationTime = Instant.now();
 		}
@@ -40,12 +40,12 @@ public class Url {
 			this.shortUrl = shortUrl;
 		}
 		
-		public String getLongUrl() {
-			return longUrl;
+		public String getOriginalUrl() {
+			return originalUrl;
 		}
 		
-		public void setLongUrl(String longUrl) {
-			this.longUrl = longUrl;
+		public void setOriginalUrl(String longUrl) {
+			this.originalUrl = longUrl;
 		}		
 }
 

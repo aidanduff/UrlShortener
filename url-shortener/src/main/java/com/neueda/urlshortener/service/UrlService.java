@@ -20,8 +20,8 @@ public class UrlService {
 		return urlRepository.findTopByShortUrl(shortUrl);	
 	}
 	
-	public Url getUrl(String longUrl) {
-		return urlRepository.findTopByLongUrl(longUrl);	
+	public Url getUrl(String originalUrl) {
+		return urlRepository.findTopByOriginalUrl(originalUrl);	
 	}
 	
 	public void updateUrl(Url url) {
