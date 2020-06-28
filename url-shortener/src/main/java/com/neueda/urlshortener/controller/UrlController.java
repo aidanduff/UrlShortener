@@ -25,7 +25,7 @@ public class UrlController {
 	private UrlService urlService;
 	
 	@RequestMapping(method=RequestMethod.POST, value="/short")
-	public ResponseEntity<?> addAndEncode(@Validated@RequestBody String originalUrl) {		
+	public ResponseEntity<Url> addAndEncode(@Validated@RequestBody String originalUrl) {		
 		Url urlToAdd = new Url(originalUrl, "");								
 		urlService.addUrl(urlToAdd);											//Add the long URL to the database
 		int uniqueId = urlService.getUrl(originalUrl).getId();					//Get the auto-generated ID for the database entry
