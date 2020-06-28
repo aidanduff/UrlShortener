@@ -2,17 +2,17 @@ package com.neueda.urlshortener.model;
 
 import java.time.Instant;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "urls")
 @Entity
 public class Url {
 		@Id
 		@GeneratedValue
 		private int id;
+		@Column(name="long_url",columnDefinition="VARCHAR(3200)")
 		private String longUrl;
 		private String shortUrl;
 		private Instant creationTime;
