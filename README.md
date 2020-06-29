@@ -1,5 +1,8 @@
 Url Shortener for Technical Assessment
 
+Docker image: 
+docker pull aidanduff/url-shortener:latest
+
 The endpoints:
 
     "/" Start page.
