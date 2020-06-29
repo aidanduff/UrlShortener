@@ -33,7 +33,7 @@ public class UrlController {
 	public String welcome() {
 		stats = stats.getInstance();
 		return "Welcome to Squeez.it\n\nAdd your long link as plain text in the body and post it to Squeez.it\n\n"
-				+ "Post your short link in the address bar at squeez.ee to use it\n\n"
+				+ "Paste your short link in the address bar after squeez.it/ to be redirected to your destination\n\n"
 				+ "Statistics are available at /stats";
 	}
 
@@ -48,13 +48,12 @@ public class UrlController {
 		Url urlToAdd = new Url(originalUrl, "");
 		urlService.addUrl(urlToAdd); // Add the long URL to the database
 		int uniqueId = urlService.getUrl(originalUrl).getId(); // Get the auto-generated ID for the database entry
-		urlToAdd.setShortUrl(new Encoder().encode(originalUrl, uniqueId)); // Use the ID as a seed to encode the long
-																			// URL into a short URL
+		urlToAdd.setShortUrl(new Encoder().encode(originalUrl, uniqueId)); // Use the ID as a seed to encode the long URL into a short URL
 		urlService.updateUrl(urlToAdd); // Update the database entry with the short URL
 		return new ResponseEntity<Url>(urlToAdd, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/squeez.ee/{shortString}", method = RequestMethod.GET)
+	@RequestMapping(value = "/squeez.it/{shortString}", method = RequestMethod.GET)
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString)
 			throws IOException {
 		stats = stats.getInstance();
