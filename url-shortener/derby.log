@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Mon Jun 29 17:54:29 BST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0173-0100-612e-00000b689e50 
-on database directory memory:C:\Users\Admin\git\LocalUrlShortener\url-shortener\3fdd7281-e84b-4811-945a-10c2db511f8e with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Mon Jun 29 18:04:29 BST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0173-0109-8975-000008bac2b0 
+on database directory memory:C:\Users\Admin\git\LocalUrlShortener\url-shortener\61fac112-ad59-4b9a-9ed9-47c54d5c8c3e with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
 Loaded from file:/C:/Users/Admin/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_201-b09
+java.runtime.version=1.8.0_171-b11
 user.dir=C:\Users\Admin\git\LocalUrlShortener\url-shortener
 os.name=Windows 10
 os.arch=amd64
