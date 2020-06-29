@@ -13,18 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.neueda.urlshortener.model.Stats;
 import com.neueda.urlshortener.model.Url;
 import com.neueda.urlshortener.service.UrlService;
 import com.neueda.urlshortener.util.Encoder;
+import com.neueda.urlshortener.util.StatsHelper;
 
 @RestController
 public class UrlController {
 
 	@Autowired
 	private UrlService urlService;
+	private Stats stats;
+	private int numberOfUrlsShortened;
+	private StatsHelper statsHelper;
 	
-	@RequestMapping(method=RequestMethod.POST, value="/short")
-	public ResponseEntity<Url> addAndEncode(@Validated@RequestBody String originalUrl) {	
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	public String welcome(){
+		stats = stats.getInstance();
+		return "Welcome to Squeez.it\n\nAdd your long link as plain text in the body and post it to Squeez.it";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/squeeze.it")
+	public ResponseEntity<Url> addAndEncode(@Validated@RequestBody String originalUrl) {
+		stats = stats.getInstance();
+		statsHelper = new StatsHelper();
+		statsHelper.checkIfLongest(originalUrl);
+		statsHelper.checkIfShortest(originalUrl);
+		stats.setNumberOfUrlsShortened(++numberOfUrlsShortened);
+		
 		Url urlToAdd = new Url(originalUrl, "");								
 		urlService.addUrl(urlToAdd);											//Add the long URL to the database
 		int uniqueId = urlService.getUrl(originalUrl).getId();					//Get the auto-generated ID for the database entry
@@ -33,8 +51,15 @@ public class UrlController {
 		return new ResponseEntity<Url>(urlToAdd, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{shortString}",method = RequestMethod.GET)
+	@RequestMapping(value = "/squeez.ee/{shortString}",method = RequestMethod.GET)
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString) throws IOException {
+		stats = stats.getInstance();
 		httpServletResponse.sendRedirect(urlService.getLong(shortString).getOriginalUrl());
-	}	
+	}
+	
+	@RequestMapping(value = "/stats",method = RequestMethod.GET)
+	public Stats stats(){
+		stats = stats.getInstance();
+		return stats;
+	}
 }
