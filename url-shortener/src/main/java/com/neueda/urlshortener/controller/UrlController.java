@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.neueda.urlshortener.model.Url;
 import com.neueda.urlshortener.service.UrlService;
 import com.neueda.urlshortener.util.Encoder;
@@ -25,7 +24,7 @@ public class UrlController {
 	private UrlService urlService;
 	
 	@RequestMapping(method=RequestMethod.POST, value="/short")
-	public ResponseEntity<Url> addAndEncode(@Validated@RequestBody String originalUrl) {		
+	public ResponseEntity<Url> addAndEncode(@Validated@RequestBody String originalUrl) {	
 		Url urlToAdd = new Url(originalUrl, "");								
 		urlService.addUrl(urlToAdd);											//Add the long URL to the database
 		int uniqueId = urlService.getUrl(originalUrl).getId();					//Get the auto-generated ID for the database entry

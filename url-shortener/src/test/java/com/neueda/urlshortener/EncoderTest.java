@@ -13,13 +13,13 @@ public class EncoderTest {
 	private int id = 0;
 
 	@Test
-	public void shortenedUrlIsLongerThanTwo() {
+	public void testShortenedUrlIsLongerThanTwo() {
 		encoder = new Encoder();
 		assertTrue(encoder.encode(longUrl, ++id).length() > 2);
 	}
 	
 	@Test
-	public void shortenedUrlIsShorterThanSix() {
+	public void testhortenedUrlIsShorterThanSix() {
 		encoder = new Encoder();
 		assertTrue(encoder.encode(longUrl, ++id).length() <= 6);
 	}
@@ -49,8 +49,14 @@ public class EncoderTest {
 	}
 	
 	@Test
-	public void upperBoundaryUrlShorterThanSic() {
+	public void upperBoundaryUrlShorterThanSix() {
 		encoder = new Encoder();
 		assertTrue(encoder.encode(longUrl, Integer.MAX_VALUE/3844).length() <= 6);	
+	}
+	
+	@Test
+	public void testNegativeNumber() {
+		encoder = new Encoder();
+		assertEquals("", encoder.encode(longUrl, -1));
 	}
 }
