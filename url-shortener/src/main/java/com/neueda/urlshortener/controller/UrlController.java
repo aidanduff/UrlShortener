@@ -32,10 +32,12 @@ public class UrlController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome() {
 		stats = stats.getInstance();
-		return "Welcome to Squeez.it\n\nAdd your long link as plain text in the body and post it to Squeez.it";
+		return "Welcome to Squeez.it\n\nAdd your long link as plain text in the body and post it to Squeez.it\n\n"
+				+ "Post your short link in the address bar at squeez.ee to use it\n\n"
+				+ "Statistics are available at /stats";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/squeeze.it")
+	@RequestMapping(method = RequestMethod.POST, value = "/squeez.it")
 	public ResponseEntity<Url> addAndEncode(@Validated @RequestBody String originalUrl) {
 		stats = stats.getInstance();
 		statsHelper = new StatsHelper();
