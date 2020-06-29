@@ -32,7 +32,7 @@ public class UrlController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome() {
 		stats = stats.getInstance();
-		return "Welcome to Squeez.it\n\nAdd your long link as plain text in the body and post it to Squeez.it\n\n"
+		return "Welcome to squeez.it\n\nAdd your long link as plain text in the body and post it to squeez.it\n\n"
 				+ "Paste your short link in the address bar after squeez.it/ to be redirected to your destination\n\n"
 				+ "Statistics are available at /stats";
 	}
