@@ -13,18 +13,18 @@ public class UrlService {
 
 	public String addUrl(Url url) {
 		urlRepository.save(url);
-		return url.getShortUrl();	
+		return url.getShortUrl();
 	}
-	
+
 	public Url getLong(String shortUrl) {
-		return urlRepository.findTopByShortUrl(shortUrl);	
+		return urlRepository.findTopByShortUrl(shortUrl);
 	}
-	
+
 	public Url getUrl(String originalUrl) {
-		return urlRepository.findTopByOriginalUrl(originalUrl);	
+		return urlRepository.findTopByOriginalUrl(originalUrl);
 	}
-	
+
 	public void updateUrl(Url url) {
-		urlRepository.save(url);		
+		urlRepository.save(url);
 	}
 }

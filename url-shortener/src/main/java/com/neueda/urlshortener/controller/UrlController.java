@@ -28,38 +28,34 @@ public class UrlController {
 	private Stats stats;
 	private int numberOfUrlsShortened;
 	private StatsHelper statsHelper;
-	
-	@RequestMapping(value = "/",method = RequestMethod.GET)
-	public String welcome(){
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String welcome() {
 		stats = stats.getInstance();
 		return "Welcome to Squeez.it\n\nAdd your long link as plain text in the body and post it to Squeez.it";
 	}
-	
-	@RequestMapping(method=RequestMethod.POST, value="/squeeze.it")
-	public ResponseEntity<Url> addAndEncode(@Validated@RequestBody String originalUrl) {
+
+	@RequestMapping(method = RequestMethod.POST, value = "/squeeze.it")
+	public ResponseEntity<Url> addAndEncode(@Validated @RequestBody String originalUrl) {
 		stats = stats.getInstance();
 		statsHelper = new StatsHelper();
 		statsHelper.checkIfLongest(originalUrl);
 		statsHelper.checkIfShortest(originalUrl);
 		stats.setNumberOfUrlsShortened(++numberOfUrlsShortened);
-		
-		Url urlToAdd = new Url(originalUrl, "");								
-		urlService.addUrl(urlToAdd);											//Add the long URL to the database
-		int uniqueId = urlService.getUrl(originalUrl).getId();					//Get the auto-generated ID for the database entry
-		urlToAdd.setShortUrl(new Encoder().encode(originalUrl, uniqueId));		//Use the ID as a seed to encode the long URL into a short URL
-		urlService.updateUrl(urlToAdd);											//Update the database entry with the short URL
+
+		Url urlToAdd = new Url(originalUrl, "");
+		urlService.addUrl(urlToAdd); // Add the long URL to the database
+		int uniqueId = urlService.getUrl(originalUrl).getId(); // Get the auto-generated ID for the database entry
+		urlToAdd.setShortUrl(new Encoder().encode(originalUrl, uniqueId)); // Use the ID as a seed to encode the long
+																			// URL into a short URL
+		urlService.updateUrl(urlToAdd); // Update the database entry with the short URL
 		return new ResponseEntity<Url>(urlToAdd, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/squeez.ee/{shortString}",method = RequestMethod.GET)
-	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString) throws IOException {
+	@RequestMapping(value = "/squeez.ee/{shortString}", method = RequestMethod.GET)
+	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString)
+			throws IOException {
 		stats = stats.getInstance();
 		httpServletResponse.sendRedirect(urlService.getLong(shortString).getOriginalUrl());
-	}
-	
-	@RequestMapping(value = "/stats",method = RequestMethod.GET)
-	public Stats stats(){
-		stats = stats.getInstance();
-		return stats;
 	}
 }

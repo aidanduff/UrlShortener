@@ -13,9 +13,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class Handler extends ResponseEntityExceptionHandler {
-	
-	   @Override
-	   protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-	       return new ResponseEntity<>("ERROR! Please enter a non-empty URL.", status);
-	   }
+
+	@Override
+	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		return new ResponseEntity<>("ERROR! Please enter a non-empty URL.", status);
 	}
+}

@@ -9,7 +9,9 @@ import com.neueda.urlshortener.util.Encoder;
 @SpringBootTest
 public class EncoderTest {
 	private Encoder encoder;
-	private String longUrl = "https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue";
+	private String longUrl = "https://www.google.ie/search?q=how+to+tie+a+knot"
+			+ "&sxsrf=ALeKk012yknipnFcXa57fNTZ26pHXHb_1Q:1593443995376&source=lnms"
+			+ "&tbm=isch&sa=X&ved=2ahUKEwjwgMG6qafqAhVFr3EKHa0AA4EQ_AUoAXoECA4QAw&biw=1745&bih=881&dpr=1.1";
 	private int id = 0;
 
 	@Test
