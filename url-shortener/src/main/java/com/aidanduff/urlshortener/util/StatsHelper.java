@@ -1,6 +1,6 @@
-package com.neueda.urlshortener.util;
+package com.aidanduff.urlshortener.util;
 
-import com.neueda.urlshortener.model.Stats;
+import com.aidanduff.urlshortener.model.Stats;
 
 public class StatsHelper {
 	Stats stats = Stats.getInstance();

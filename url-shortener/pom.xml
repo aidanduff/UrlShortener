@@ -9,7 +9,7 @@
 		<version>2.3.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.neueda</groupId>
+	<groupId>com.aidanduff</groupId>
 	<artifactId>url-shortener</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>url-shortener</name>

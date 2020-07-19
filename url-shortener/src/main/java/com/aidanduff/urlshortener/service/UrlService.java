@@ -1,10 +1,10 @@
-package com.neueda.urlshortener.service;
+package com.aidanduff.urlshortener.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.neueda.urlshortener.model.Url;
-import com.neueda.urlshortener.repository.UrlRepository;
+import com.aidanduff.urlshortener.model.Url;
+import com.aidanduff.urlshortener.repository.UrlRepository;
 
 @Service
 public class UrlService {

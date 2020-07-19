@@ -1,12 +1,11 @@
-package com.neueda.urlshortener;
+package com.aidanduff;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import com.neueda.urlshortener.util.Encoder;
 
-@SpringBootTest
+import com.aidanduff.urlshortener.util.Encoder;
+
 public class EncoderTest {
 	private Encoder encoder;
 	private String longUrl = "https://www.google.ie/search?q=how+to+tie+a+knot"

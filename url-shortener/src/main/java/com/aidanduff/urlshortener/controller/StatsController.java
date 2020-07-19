@@ -1,10 +1,10 @@
-package com.neueda.urlshortener.controller;
+package com.aidanduff.urlshortener.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neueda.urlshortener.model.Stats;
+import com.aidanduff.urlshortener.model.Stats;
 
 @RestController
 public class StatsController {

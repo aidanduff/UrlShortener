@@ -1,4 +1,4 @@
-package com.neueda.urlshortener.exception;
+package com.aidanduff.urlshortener.exception;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

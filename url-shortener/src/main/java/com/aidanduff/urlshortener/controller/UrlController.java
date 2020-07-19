@@ -1,4 +1,4 @@
-package com.neueda.urlshortener.controller;
+package com.aidanduff.urlshortener.controller;
 
 import java.io.IOException;
 
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neueda.urlshortener.model.Stats;
-import com.neueda.urlshortener.model.Url;
-import com.neueda.urlshortener.service.UrlService;
-import com.neueda.urlshortener.util.Encoder;
-import com.neueda.urlshortener.util.StatsHelper;
+import com.aidanduff.urlshortener.model.Stats;
+import com.aidanduff.urlshortener.model.Url;
+import com.aidanduff.urlshortener.service.UrlService;
+import com.aidanduff.urlshortener.util.Encoder;
+import com.aidanduff.urlshortener.util.StatsHelper;
 
 @RestController
 public class UrlController {

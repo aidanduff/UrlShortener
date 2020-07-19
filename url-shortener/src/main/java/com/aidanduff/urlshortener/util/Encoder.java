@@ -1,4 +1,4 @@
-package com.neueda.urlshortener.util;
+package com.aidanduff.urlshortener.util;
 
 public class Encoder {
 

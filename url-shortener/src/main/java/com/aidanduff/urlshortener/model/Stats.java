@@ -1,4 +1,4 @@
-package com.neueda.urlshortener.model;
+package com.aidanduff.urlshortener.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
