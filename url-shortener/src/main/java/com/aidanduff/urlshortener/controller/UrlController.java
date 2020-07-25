@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aidanduff.urlshortener.model.Stats;
@@ -29,7 +30,7 @@ public class UrlController {
 	private int numberOfUrlsShortened;
 	private StatsHelper statsHelper;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public String welcome() {
 		stats = stats.getInstance();
 		return "Welcome to squeez.it\n\nAdd your long link as plain text in the body and post it to squeez.it\n\n"
@@ -37,7 +38,7 @@ public class UrlController {
 				+ "Statistics are available at /stats";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/squeez.it")
+	@PostMapping("/squeez.it")
 	public ResponseEntity<Url> addAndEncode(@Validated @RequestBody String originalUrl) {
 		stats = stats.getInstance();
 		statsHelper = new StatsHelper();
@@ -53,7 +54,7 @@ public class UrlController {
 		return new ResponseEntity<Url>(urlToAdd, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/squeez.it/{shortString}", method = RequestMethod.GET)
+	@PutMapping("/squeez.it/{shortString}")
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString)
 			throws IOException {
 		stats = stats.getInstance();
