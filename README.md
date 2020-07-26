@@ -1,1 +1,1 @@
-A simple URL shortner created with Spring Data JPA
+A simple URL shortener created with Spring Data JPA
