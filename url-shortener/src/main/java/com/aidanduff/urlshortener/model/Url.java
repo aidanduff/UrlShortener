@@ -12,15 +12,13 @@ public class Url {
 		@Id
 		@GeneratedValue
 		private int id;
-		@Column(name="original_url",columnDefinition="VARCHAR(3200)")
+		@Column(name="original_url",columnDefinition="VARCHAR(3200)", unique=true)
 		private String originalUrl;
-		private String shortUrl;
 		private Instant creationTime;
 		
-		public Url(String longUrl, String shortUrl) {
+		public Url(String longUrl) {
 			super();
 			this.originalUrl = longUrl;
-			this.shortUrl = shortUrl;
 			this.creationTime = Instant.now();
 		}
 		
@@ -30,14 +28,6 @@ public class Url {
 		
 		public int getId() {
 			return id;
-		}
-		
-		public String getShortUrl() {
-			return shortUrl;
-		}
-
-		public void setShortUrl(String shortUrl) {
-			this.shortUrl = shortUrl;
 		}
 		
 		public String getOriginalUrl() {

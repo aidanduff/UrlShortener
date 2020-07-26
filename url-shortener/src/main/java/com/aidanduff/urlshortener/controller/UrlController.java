@@ -5,13 +5,13 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,27 +40,31 @@ public class UrlController {
 	}
 
 	@PostMapping("/squeez.it")
-	public ResponseEntity<Url> addAndEncode(@Validated @RequestBody String originalUrl) {
+	public ResponseEntity<String> addAndEncode(@Validated @RequestBody String originalUrl) {
 		stats = stats.getInstance();
 		statsHelper = new StatsHelper();
 		statsHelper.checkIfLongest(originalUrl);
 		statsHelper.checkIfShortest(originalUrl);
 		stats.setNumberOfUrlsShortened(++numberOfUrlsShortened);
+		
+		Url urlToAdd = new Url();
+		
+		if(urlService.getUrl(originalUrl) == null) {
+			urlToAdd.setOriginalUrl(originalUrl);
+			urlService.addUrl(urlToAdd);
+		} else {
+			urlToAdd = urlService.getUrl(originalUrl);
+		}
 
-		Url urlToAdd = new Url(originalUrl, "");
-		urlService.addUrl(urlToAdd); // Add the long URL to the database
 		int uniqueId = urlService.getUrl(originalUrl).getId(); // Get the auto-generated ID for the database entry
 		
-		urlToAdd.setShortUrl(new Encoder().encode(uniqueId)); // Use the ID as a seed to encode the long URL into a short URL
-		//urlService.updateUrl(urlToAdd); // Update the database entry with the short URL
-		return new ResponseEntity<Url>(urlToAdd, HttpStatus.CREATED);
+		return new ResponseEntity<String>(new Encoder().encode(uniqueId), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/squeez.it/{shortString}")
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString)
 			throws IOException {
 		stats = stats.getInstance();
-//		httpServletResponse.sendRedirect(urlService.getLong(shortString).getOriginalUrl());
 		httpServletResponse.sendRedirect(urlService.getUrlById(new Decoder().decode(shortString)).getOriginalUrl());
 	}
 }

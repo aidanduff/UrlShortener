@@ -11,9 +11,8 @@ public class UrlService {
 	@Autowired
 	private UrlRepository urlRepository;
 
-	public String addUrl(Url url) {
+	public void addUrl(Url url) {
 		urlRepository.save(url);
-		return url.getShortUrl();
 	}
 	
 	public Url getUrlById(int id){
@@ -21,7 +20,7 @@ public class UrlService {
 	}
 
 	public Url getUrl(String originalUrl) {
-		return urlRepository.findTopByOriginalUrl(originalUrl);
+		return urlRepository.findByOriginalUrl(originalUrl);
 	}
 
 	public void updateUrl(Url url) {

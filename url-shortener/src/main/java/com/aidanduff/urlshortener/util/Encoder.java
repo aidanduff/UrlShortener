@@ -2,7 +2,6 @@ package com.aidanduff.urlshortener.util;
 
 public class Encoder {
 
-//	public String encode(String longUrl, int id) {
 	public String encode(int id) {
 	
 

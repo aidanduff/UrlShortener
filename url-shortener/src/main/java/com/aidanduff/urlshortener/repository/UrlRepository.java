@@ -6,9 +6,7 @@ import com.aidanduff.urlshortener.model.Url;
 
 public interface UrlRepository extends CrudRepository<Url, String> {
 
-	Url findTopByOriginalUrl(String originalUrl); // Use findTop to avoid SQL Exception thrown by duplicate DB entries
-
-	Url findTopByShortUrl(String shortUrl);
+	Url findByOriginalUrl(String originalUrl); 
 	
 	String findOriginalUrlById(int id);
 

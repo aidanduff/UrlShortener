@@ -2,15 +2,7 @@ package com.aidanduff.urlshortener.util;
 
 public class Decoder {
 	
-	public int decode(String shortURL) {
-//		String importantPart = shortURL.substring(32);
-//		
-//
-//		return convertBase62ToDecimal(importantPart);
-		return convertBase62ToDecimal(shortURL);
-	}
-	
-	public int convertBase62ToDecimal(String str) {
+	public int decode(String str) {
 		int id = 0;
 		for (int i = 0; i < str.length(); i++) {
 			if ('a' <= str.charAt(i) && str.charAt(i) <= 'z') {
