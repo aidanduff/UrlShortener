@@ -9,5 +9,9 @@ public interface UrlRepository extends CrudRepository<Url, String> {
 	Url findTopByOriginalUrl(String originalUrl); // Use findTop to avoid SQL Exception thrown by duplicate DB entries
 
 	Url findTopByShortUrl(String shortUrl);
+	
+	String findOriginalUrlById(int id);
+
+	Url findById(int id);
 
 }

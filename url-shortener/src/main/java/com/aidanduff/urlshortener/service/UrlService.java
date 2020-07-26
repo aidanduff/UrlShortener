@@ -15,9 +15,9 @@ public class UrlService {
 		urlRepository.save(url);
 		return url.getShortUrl();
 	}
-
-	public Url getLong(String shortUrl) {
-		return urlRepository.findTopByShortUrl(shortUrl);
+	
+	public Url getUrlById(int id){
+		return urlRepository.findById(id);
 	}
 
 	public Url getUrl(String originalUrl) {

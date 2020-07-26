@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aidanduff.urlshortener.model.Stats;
 import com.aidanduff.urlshortener.model.Url;
 import com.aidanduff.urlshortener.service.UrlService;
+import com.aidanduff.urlshortener.util.Decoder;
 import com.aidanduff.urlshortener.util.Encoder;
 import com.aidanduff.urlshortener.util.StatsHelper;
 
@@ -49,15 +50,17 @@ public class UrlController {
 		Url urlToAdd = new Url(originalUrl, "");
 		urlService.addUrl(urlToAdd); // Add the long URL to the database
 		int uniqueId = urlService.getUrl(originalUrl).getId(); // Get the auto-generated ID for the database entry
-		urlToAdd.setShortUrl(new Encoder().encode(originalUrl, uniqueId)); // Use the ID as a seed to encode the long URL into a short URL
-		urlService.updateUrl(urlToAdd); // Update the database entry with the short URL
+		
+		urlToAdd.setShortUrl(new Encoder().encode(uniqueId)); // Use the ID as a seed to encode the long URL into a short URL
+		//urlService.updateUrl(urlToAdd); // Update the database entry with the short URL
 		return new ResponseEntity<Url>(urlToAdd, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/squeez.it/{shortString}")
+	@GetMapping("/squeez.it/{shortString}")
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString)
 			throws IOException {
 		stats = stats.getInstance();
-		httpServletResponse.sendRedirect(urlService.getLong(shortString).getOriginalUrl());
+//		httpServletResponse.sendRedirect(urlService.getLong(shortString).getOriginalUrl());
+		httpServletResponse.sendRedirect(urlService.getUrlById(new Decoder().decode(shortString)).getOriginalUrl());
 	}
 }
