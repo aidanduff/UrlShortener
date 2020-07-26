@@ -4,7 +4,6 @@ public class Encoder {
 
 	public String encode(int id) {
 	
-
 		return "http://localhost:8080/squeez.it/" + convertDecimalToBase62(id);
 	}
 

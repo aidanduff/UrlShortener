@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aidanduff.urlshortener.model.Stats;
 import com.aidanduff.urlshortener.model.Url;
+import com.aidanduff.urlshortener.model.UrlResponseObject;
 import com.aidanduff.urlshortener.service.UrlService;
 import com.aidanduff.urlshortener.util.Decoder;
 import com.aidanduff.urlshortener.util.Encoder;
@@ -40,7 +40,7 @@ public class UrlController {
 	}
 
 	@PostMapping("/squeez.it")
-	public ResponseEntity<String> addAndEncode(@Validated @RequestBody String originalUrl) {
+	public ResponseEntity<UrlResponseObject> addAndEncode(@Validated @RequestBody String originalUrl) {
 		stats = stats.getInstance();
 		statsHelper = new StatsHelper();
 		statsHelper.checkIfLongest(originalUrl);
@@ -57,8 +57,8 @@ public class UrlController {
 		}
 
 		int uniqueId = urlService.getUrl(originalUrl).getId(); // Get the auto-generated ID for the database entry
-		
-		return new ResponseEntity<String>(new Encoder().encode(uniqueId), HttpStatus.CREATED);
+		String shortenedUrl = new Encoder().encode(uniqueId);
+		return new ResponseEntity<>(new UrlResponseObject(originalUrl, shortenedUrl), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/squeez.it/{shortString}")
