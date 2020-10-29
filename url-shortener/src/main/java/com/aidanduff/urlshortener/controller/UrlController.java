@@ -30,11 +30,11 @@ public class UrlController {
 
 	@GetMapping("/")
 	public String welcome() {
-		return "Welcome to squeez.it\n\nAdd your long link as plain text in the body and post it to squeezer\n\n"
+		return "Welcome to skweez.it\n\nAdd your long link as plain text in the body and post it to squeezer\n\n"
 				+ "Paste your short link in the address bar after squeezer/ to be redirected to your destination\n\n";
 	}
 
-	@PostMapping("/squeezer")
+	@PostMapping("/skweez.it")
 	public ResponseEntity<UrlResponseObject> addAndEncode(@Validated @RequestBody String originalUrl) {		
 		Url urlToAdd = new Url();
 		
@@ -50,7 +50,7 @@ public class UrlController {
 		return new ResponseEntity<>(new UrlResponseObject(originalUrl, shortenedUrl), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/squeezer/{shortString}")
+	@GetMapping("/skweez.it/{shortString}")
 	public void getRedirect(HttpServletResponse httpServletResponse, @PathVariable String shortString)
 			throws IOException {
 		httpServletResponse.sendRedirect(urlService.getUrlById(new Decoder().decode(shortString)).getOriginalUrl());

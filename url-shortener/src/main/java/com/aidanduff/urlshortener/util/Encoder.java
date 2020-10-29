@@ -4,7 +4,7 @@ public class Encoder {
 
 	public String encode(int id) {
 	
-		return "http://localhost:8080/squeezer/" + convertDecimalToBase62(id);
+		return "http://localhost:8080/skweez.it/" + convertDecimalToBase62(id);
 	}
 
 	public String convertDecimalToBase62(int n) {
